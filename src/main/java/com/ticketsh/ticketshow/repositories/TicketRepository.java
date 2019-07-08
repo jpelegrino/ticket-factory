@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface TicketRepository extends JpaRepository<Ticket,Long> {
     @Query(nativeQuery = true,value = "SELECT COUNT(*) tk_fac_ticket")
     Long registeredTicket();
+    Optional<Ticket> findById(Long id);
 }

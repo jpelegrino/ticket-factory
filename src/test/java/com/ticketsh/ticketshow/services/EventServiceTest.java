@@ -1,5 +1,6 @@
 package com.ticketsh.ticketshow.services;
 
+import com.ticketsh.ticketshow.dtos.response.EventDTO;
 import com.ticketsh.ticketshow.entities.Event;
 import com.ticketsh.ticketshow.repositories.EventRepository;
 import com.ticketsh.ticketshow.services.impl.EventServiceImpl;
@@ -12,6 +13,9 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
@@ -40,7 +44,7 @@ public class EventServiceTest {
 
         given(eventRepository.save(event)).willReturn(eventSaved);
         //when
-        Event eventPersist=eventService.saveEvent(event);
+        EventDTO eventPersist=eventService.saveEvent(event);
         //then
         then(eventRepository).should().save(event);
         assertNotNull(eventPersist);
@@ -49,11 +53,25 @@ public class EventServiceTest {
     }
 
     @Test
+    public void testGetAllEvent() {
+        List<Event> events= Arrays.asList(new Event());
+
+        given(eventRepository.findAll()).willReturn(events);
+
+        EventDTO eventDTO=eventService.getAllEvent();
+
+        then(eventRepository).should().findAll();
+        assertTrue(eventDTO.isSuccessed());
+
+    }
+
+
+    @Test
     public void testIntegrationSaveEvent() {
-        Event event=service.saveEvent(EventMock.newEvent());
+        EventDTO event=service.saveEvent(EventMock.newEvent());
 
         assertNotNull(event);
-        assertNotNull(event.getId());
+        assertNotNull(event.getEvent());
     }
 
 
