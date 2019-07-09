@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 public class TicketStore {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
     @NotNull(message = "The section should have at least 1")
     @ApiModelProperty(notes = "This is where you find a classified group of seats")

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -20,7 +21,7 @@ public class TicketResource {
     private TicketService ticketService;
 
     @PostMapping
-    public ResponseEntity saveTicket(@RequestBody Ticket ticket) {
+    public ResponseEntity saveTicket(@Valid @RequestBody Ticket ticket) {
         TicketDTO ticketDTO=new TicketDTO();
         URI location=null;
         try {

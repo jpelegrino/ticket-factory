@@ -15,7 +15,6 @@ import java.util.Date;
 public class Event implements Serializable{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
     @ApiModelProperty(notes = "Date of the event")
     @Column(name = "event_date")
